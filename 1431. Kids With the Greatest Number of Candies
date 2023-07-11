@@ -1,0 +1,20 @@
+class Solution {
+public:
+    vector<bool> kidsWithCandies(vector<int>& candies, int extraCandies) {
+        int candiesLength = candies.size();
+        int highestVal = 0;
+        for (int i = 0; i < candiesLength; i++) {
+            if (candies.at(i) >= highestVal) {
+                highestVal = candies.at(i);
+            }
+        }
+
+        vector<bool> result;
+        for (int i = 0; i < candiesLength; i++) {
+            bool x = (candies.at(i) + extraCandies >= highestVal) ? true : false;
+            result.push_back(x);
+        }
+
+        return result;
+    }
+};
