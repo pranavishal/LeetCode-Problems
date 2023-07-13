@@ -1,0 +1,30 @@
+class Solution {
+public:
+    string reverseVowels(string s) {
+        int sLen = s.length();
+        string sVowels = "";
+        for(int i = 0; i < sLen; i++) {
+            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' 
+            || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
+                //cout << s[i] << endl;
+                sVowels += s[i];
+            }
+        }
+
+        int sVowelsLen = sVowels.length();
+        int sVowelIndex = sVowelsLen - 1;
+        string reverseS = "";
+        for(int i = 0; i < sLen; i++) {
+            if (s[i] == 'a' || s[i] == 'e' || s[i] == 'i' || s[i] == 'o' || s[i] == 'u' 
+            || s[i] == 'A' || s[i] == 'E' || s[i] == 'I' || s[i] == 'O' || s[i] == 'U') {
+                //cout << s[i] << endl;
+                reverseS += sVowels[sVowelIndex];
+                sVowelIndex--;
+            } else {
+                reverseS += s[i];
+            }
+        }
+
+        return reverseS;
+    }
+};
