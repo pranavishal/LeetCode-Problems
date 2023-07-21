@@ -1,0 +1,25 @@
+class Solution {
+public:
+    vector<int> productExceptSelf(vector<int>& nums) {
+        int numsLen = nums.size();
+
+
+       vector<int> prefix(numsLen, 1);
+       vector<int> suffix(numsLen, 1);
+       vector<int> answer(numsLen, 1);
+
+       for (int i = 1; i < numsLen; i++) {
+           prefix.at(i) = prefix.at(i - 1) * nums.at(i - 1);
+       }
+
+       for (int i = numsLen - 2; i >= 0; i--) {
+           suffix.at(i) = suffix.at(i + 1) * nums.at(i + 1);
+       }
+       for(int i = 0; i < numsLen; i++) {
+           answer.at(i) = prefix.at(i) * suffix.at(i);
+       }
+
+       return answer;
+        
+    }
+};
