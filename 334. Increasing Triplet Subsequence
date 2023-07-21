@@ -3,50 +3,25 @@ public:
     bool increasingTriplet(vector<int>& nums) {
         int numsLength = nums.size();
 
-        bool secondFound = false;
-        bool thirdFound = false;
-        int currentLarger = 0;
+        int firstVal = INT_MAX;
+        int secondVal = INT_MAX;
+
         //make sure the vector is long enough
         if (numsLength < 3) {
             return false;
         }
 
-        //make sure the difference between the maximum and minimum is at least 2
-        int minVal = nums.at(0);
-        int maxVal = nums.at(0);
         for(int i = 0; i < numsLength; i++) {
-            if (nums.at(i) < minVal) {
-                minVal = nums.at(i);
-            } 
-
-            if (nums.at(i) > maxVal) {
-                maxVal = nums.at(i);
+            if (nums.at(i) > secondVal) {
+                return true;
             }
-        }
-
-        if (maxVal - minVal < 2) {
-            return false;
-        }
-
-        //Now that we know it is plausible to have an increasing triplet subsequence, begin the nested iteration
-        
-        for(int i = 0; i < numsLength - 2; i++) {
-            currentLarger = nums.at(i);
-            secondFound = false;
-            for (int j = i; j < numsLength; j++) {
-                if (nums.at(j) > currentLarger && !secondFound) {
-                    secondFound = true;
-                    currentLarger = nums.at(j);                   
-                }
-                else if (nums.at(j) > currentLarger && !thirdFound) {                   
-                    return true;
-                } else if (nums.at(j) <= currentLarger && nums.at(j) > nums.at(i)){
-                    secondFound = true;
-                    currentLarger = nums.at(j);
-
-                }
+            else if(nums.at(i) > firstVal && nums.at(i) < secondVal) {
+                secondVal = nums.at(i);
+            } else if (nums.at(i) < firstVal) {
+                firstVal = nums.at(i);
             }
         }
         return false;
+
     }
 };
