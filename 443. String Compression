@@ -1,0 +1,53 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        string s = "";
+        int charsLen = chars.size();
+        char currentLetter = chars.at(0);
+        int letterCount = 0;
+        vector<char> results;
+        for(int i = 0; i < charsLen; i++) {
+            if(i == (charsLen - 1)) {
+                if(chars.at(i) == currentLetter) {
+                    letterCount++;
+                    s += currentLetter;
+                    if (letterCount > 1) {
+                        s += std::to_string(letterCount);
+                    }
+                } else {
+                    s += currentLetter;
+                    if (letterCount > 1) {
+                        s += std::to_string(letterCount);
+                    }
+                    s += chars.at(i);
+                    
+                }
+                               
+            } 
+
+            else if(chars.at(i) == currentLetter) {
+                letterCount++;
+            } else {
+                s += currentLetter;
+                if (letterCount > 1) {
+                    s += std::to_string(letterCount);
+                }              
+                currentLetter = chars.at(i);
+                letterCount = 1;
+            }
+        }
+        cout << "s is " << s << endl;
+        int sLength = s.length();
+        for(int i = 0; i < sLength; i++) {
+            results.push_back(s[i]);
+        }
+        int resultsLength = results.size();
+        for (int i = 0; i < resultsLength; i++) {
+            cout << results.at(i) << endl;
+        }
+
+        chars = results;
+        return chars.size();
+
+    }
+};
