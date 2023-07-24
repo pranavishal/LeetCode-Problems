@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+        int sLength = s.length();
+
+        if(sLength == 0) {
+            return true;
+        }
+
+        int tLength = t.length();
+
+        int currentSIterator = 0;
+        for(int i = 0; i < tLength; i++) {
+            if(t[i] == s[currentSIterator]) {
+                currentSIterator++;
+                if (currentSIterator == sLength) {                  
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }
+};
