@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums, int k) {
+
+        sort(nums.begin(), nums.end());
+
+        for(int i = 0; i < nums.size(); i++) {
+            if(nums[i] >= k) {
+                nums.erase (nums.begin()+i, nums.end());
+                break;
+            }
+            
+        }
+        
+        int operations = 0;
+        int left = 0;
+        int right = nums.size() - 1;
+        
+        while(left < right) {
+            if (nums[left] + nums[right] > k) {
+                right--;
+            } else if (nums[left] + nums[right] < k) {
+                left++;
+            } else {
+                operations++;
+                left++;
+                right--;
+            }
+        }
+
+        return operations;
+    }
+};
