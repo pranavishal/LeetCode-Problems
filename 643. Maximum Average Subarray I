@@ -1,0 +1,31 @@
+class Solution {
+public:
+    double findMaxAverage(vector<int>& nums, int k) {
+        int numsLen = nums.size();
+        int currentTotal = 0;
+        
+        int leavingInt;
+
+        for(int i = 0; i < k; i++) {
+            currentTotal += nums.at(i);
+        }
+        leavingInt = nums.at(0);
+        int largestTotal = currentTotal;
+
+        
+        cout << endl;
+
+        for (int i = 0; i < numsLen - k; i++) {
+            leavingInt = nums.at(i);
+            currentTotal -= leavingInt;
+            currentTotal += nums.at(i + k);
+            
+            
+            if (currentTotal > largestTotal) {
+                largestTotal = currentTotal;
+            }
+        }
+        
+        return (double)largestTotal/k;
+    }
+};
